@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Typing Speed Tester</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center transition-colors duration-300" id="app-body">
+  <div class="bg-white p-6 rounded-2xl shadow-md w-full max-w-2xl text-center space-y-4 transition-colors duration-300" id="container">
+    <h1 class="text-3xl font-bold text-blue-600">⌨️ Typing Speed Tester</h1>
+    
+    <div class="flex justify-center space-x-4 mb-2">
+      <button onclick="setDifficulty('easy')" class="px-3 py-1 rounded bg-green-500 text-white hover:bg-green-600">Easy</button>
+      <button onclick="setDifficulty('medium')" class="px-3 py-1 rounded bg-yellow-500 text-white hover:bg-yellow-600">Medium</button>
+      <button onclick="setDifficulty('hard')" class="px-3 py-1 rounded bg-red-500 text-white hover:bg-red-600">Hard</button>
+    </div>
+    
+    <div class="flex justify-center space-x-4 mb-2">
+      <button onclick="setTimer(30)" class="px-3 py-1 rounded bg-blue-400 text-white hover:bg-blue-500">30s</button>
+      <button onclick="setTimer(60)" class="px-3 py-1 rounded bg-blue-500 text-white hover:bg-blue-600">60s</button>
+      <button onclick="setTimer(120)" class="px-3 py-1 rounded bg-blue-600 text-white hover:bg-blue-700">120s</button>
+    </div>
+
+    <div id="quote" class="text-gray-700 text-lg bg-gray-100 p-4 rounded-md leading-relaxed"></div>
+
+    <textarea
+      id="inputArea"
+      class="w-full border p-3 rounded-md outline-none focus:ring-2 focus:ring-blue-400 text-gray-700"
+      rows="4"
+      placeholder="Start typing here..."
+      oninput="checkTyping()"
+    ></textarea>
+
+    <div class="flex justify-around text-lg font-medium flex-wrap gap-2">
+      <p>⏱ Time: <span id="time">60</span>s</p>
+      <p>⚡ WPM: <span id="wpm">0</span></p>
+      <p>❌ Errors: <span id="errors">0</span></p>
+      <p>🎯 Accuracy: <span id="accuracy">100</span>%</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-2">
+      <button onclick="resetTest()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+        🔁 Restart
+      </button>
+      <button onclick="toggleTheme()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
+        🌓 Toggle Theme
+      </button>
+      <button onclick="showHighscores()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+        🏆 Highscores
+      </button>
+    </div>
+
+    <div class="mt-4">
+      <details>
+        <summary class="cursor-pointer text-blue-600 font-medium">View Test History</summary>
+        <div id="history" class="mt-2 text-left bg-gray-50 p-3 rounded-md max-h-40 overflow-y-auto">
+          <!-- Test history will appear here -->
+        </div>
+      </details>
+    </div>
+    
+    <div id="highscores-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+      <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-4">🏆 Highscores</h2>
+        <div id="highscores-list" class="max-h-60 overflow-y-auto"></div>
+        <button onclick="closeHighscores()" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
